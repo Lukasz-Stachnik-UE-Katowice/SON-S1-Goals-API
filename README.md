@@ -35,3 +35,8 @@ User {
 }
 ```
 
+## How to run: 
+
+```bash
+uvicorn app.main:app --reload
+```
