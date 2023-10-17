@@ -20,7 +20,8 @@ async def get_goal(goals_id: UUID):
 @router.get("/goals/{username}", tags=["goals"])
 async def get_user_goals(username: str): 
     # Here we want to return all goals in the database for given user
-
+    # if Dict.has_key(username)==1:
+        # Dict[username] --zapisać do listy
     return [{"goal": "Learn Python"}]
 
 @router.post("/goals", tags=["goals"])
