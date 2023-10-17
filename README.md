@@ -40,3 +40,8 @@ User {
 ```bash
 uvicorn app.main:app --reload
 ```
+
+## How to download requirements
+```bash
+pip install -r requirements.txt
+```
