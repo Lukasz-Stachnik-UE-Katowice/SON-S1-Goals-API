@@ -32,3 +32,8 @@ async def update_goal(goal_id: UUID, goal):
 async def delete_goal(goal_id: UUID): 
     # Here we want to delete goal from the database, and return status
     return 
+
+@router.post("/goals/{goal_id}", tags=["goals"])
+async def post_progress_goal(progress: float): 
+    # Here we want to update the progress with given on or by given value
+    return 
