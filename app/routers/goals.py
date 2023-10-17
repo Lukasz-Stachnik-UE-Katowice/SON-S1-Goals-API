@@ -1,5 +1,13 @@
 from uuid import UUID
 from fastapi import APIRouter
+from pydantic import BaseModel
+
+class Goal(BaseModel):
+    id: int
+    progress: float
+
+#example of base
+goals=Goal()
 
 router = APIRouter()
 
@@ -26,7 +34,8 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
 @router.put("/goals/{goal_id}", tags=["goals"])
 async def update_goal(goal_id: UUID, goal): 
     # Here we want to update goal in the database and return only status
-    return 
+    goals.id=goal_id
+    return
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: UUID): 
