@@ -3,6 +3,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
+class Goal(BaseModel):
+    id: int
+    progress: float
+
+goal = Goal(id=1, progress=12)
+
 @router.get("/goals", tags=["goals"])
 async def get_goals():
     # Here we want to return all goals in the database
