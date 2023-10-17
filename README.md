@@ -8,6 +8,7 @@ It's a pretty simple REST API for saving and sticking to goals, but not only goa
 
 ### Data Models
 
+```python
 Goal { 
     id: int
     due_date: str  # You can use a date format
@@ -32,3 +33,5 @@ User {
     id: UUID
     name: String
 }
+```
+
