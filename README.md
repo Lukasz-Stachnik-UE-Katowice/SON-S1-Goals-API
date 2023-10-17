@@ -35,6 +35,12 @@ User {
 }
 ```
 
+## Dependecies
+
+```bash 
+pip3 install "uvicorn[standard]" fastapi
+```
+
 ## How to run: 
 
 ```bash
