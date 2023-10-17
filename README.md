@@ -35,6 +35,21 @@ User {
 }
 ```
 
+## Create python venv:
+```bash
+python -m venv ./.venv
+```
+
+### Windows activation
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Linux activation
+```bash
+source ./.venv/bin/activate
+```
+
 ## How to run: 
 
 ```bash
