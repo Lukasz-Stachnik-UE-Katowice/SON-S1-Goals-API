@@ -6,14 +6,8 @@ class Goal(BaseModel):
     id: int
     progress: float
 
-#example of base
-goals=Goal()
 
 router = APIRouter()
-
-class Goal(BaseModel):
-    id: int
-    progress: float
 
 goal = Goal(id=1, progress=12)
 
@@ -40,7 +34,7 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
 @router.put("/goals/{goal_id}", tags=["goals"])
 async def update_goal(goal_id: UUID, goal): 
     # Here we want to update goal in the database and return only status
-    goals.id=goal_id
+    goal.id=goal_id
     return
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
