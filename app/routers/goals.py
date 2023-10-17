@@ -31,4 +31,4 @@ async def update_goal(goal_id: UUID, goal):
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: UUID): 
     # Here we want to delete goal from the database, and return status
-    return 
+    return
