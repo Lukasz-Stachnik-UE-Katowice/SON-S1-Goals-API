@@ -3,13 +3,13 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 class Goal(BaseModel):
-    id: int
+    id: str
     progress: float
 
 
 router = APIRouter()
 
-goals = [Goal(id=1, progress=0.1), Goal(id=2, progress=0.5), Goal(id=3, progress=0.63)]
+goals = [Goal(id="1", progress=0.1), Goal(id=2, progress=0.5), Goal(id=3, progress=0.63)]
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
@@ -35,7 +35,7 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
 async def update_goal(goal_id: int, goal_obj: Goal): 
     # Here we want to update goal in the database and return only status
     for goal in goals:
-        if (goal.id == goal_id):
+        if goal.id == goal_id:
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
             return goal

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SON-S1-Goals-API.iml" filepath="$PROJECT_DIR$/.idea/SON-S1-Goals-API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SON-S1-Goals-APIgoal.iml" filepath="$PROJECT_DIR$/.idea/SON-S1-Goals-APIgoal.iml" />
     </modules>
   </component>
 </project>
