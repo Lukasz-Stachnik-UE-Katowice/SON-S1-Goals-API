@@ -50,7 +50,7 @@ async def delete_goal(goal_id: UUID):
 
 
 @router.post("/goals/{goal_id}/progress", tags=["goals"])
-async def post_progress_goal(goal_id: int, progress: float):
+async def post_progress_goal(goal_id: str, progress: float):
     # Here we want to update the progress with given value
     for goal in goals:
         if goal.id == goal_id:
