@@ -36,18 +36,18 @@ async def update_goal(goal_id: UUID, goal):
     return 
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
-async def delete_goal(goal_id: UUID):
-    goal_to_delete = None
-
-    for goal in goals:
-        if goal["goal_id"] == goal_id:
-            goals.remove(goal_id)
+async def delete_goal(goal_id: str):
+    goal_to_delete= []
+    for goal in goalTestList:
+        if goal.id == goal_id:
+            goalTestList.remove(goal)
+            goal_to_delete.append(goal)
             break
 
-    if goal_to_delete is None:
-        raise HTTPException(status_code=404, detail="Targeted goal does not exist")
+    if len(goal_to_delete) == 0:
+        return HTTPException(status_code=404, detail="Targeted goal does not exist")
 
-    goals.remove(goal_to_delete)
+    #goalTestList.remove(Goal)
     return {"message": "Targeted goal destroyed"}
 
 @router.post("/goals/{goal_id}", tags=["goals"])
