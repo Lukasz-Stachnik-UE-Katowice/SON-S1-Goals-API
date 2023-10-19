@@ -1,4 +1,3 @@
-from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, HTTPException
 from .models.goal import Goal
@@ -37,18 +36,11 @@ async def update_goal(goal_id: UUID, goal):
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: str):
-    goal_to_delete= []
     for goal in goalTestList:
         if goal.id == goal_id:
             goalTestList.remove(goal)
-            goal_to_delete.append(goal)
-            break
-
-    if len(goal_to_delete) == 0:
-        return HTTPException(status_code=404, detail="Targeted goal does not exist")
-
-    #goalTestList.remove(Goal)
-    return {"message": "Targeted goal destroyed"}
+            return {"message": "Targeted goal destroyed"}
+    return HTTPException(status_code=404, detail="Targeted goal does not exist")
 
 @router.post("/goals/{goal_id}", tags=["goals"])
 async def post_progress_goal(progress: float): 
