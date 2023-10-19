@@ -47,3 +47,13 @@ async def update_goal(goal_id: str, goal_obj: Goal):
 async def delete_goal(goal_id: UUID): 
     # Here we want to delete goal from the database, and return status
     return
+
+
+@router.post("/goals/{goal_id}/progress", tags=["goals"])
+async def post_progress_goal(goal_id: int, progress: float):
+    # Here we want to update the progress with given value
+    for goal in goals:
+        if goal.id == goal_id:
+            goal.progress = progress
+            return {"goal": goal}
+    raise HTTPException(status_code=400, detail="Targeted goal does not exist")
