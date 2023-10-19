@@ -39,7 +39,7 @@ async def update_goal(goal_id: int, goal_obj: Goal):
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
         except DoesNotExist:
-            raise HTTPException(status_code=404, detail="Goal not found")
+            raise HTTPException(status_code=404, detail=" Goal not found ")
         else:
             return goal
 
