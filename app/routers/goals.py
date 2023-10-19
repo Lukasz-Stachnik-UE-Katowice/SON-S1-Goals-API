@@ -9,7 +9,7 @@ class Goal(BaseModel):
 
 router = APIRouter()
 
-goal = Goal(id=1, progress=12)
+goals = [Goal(id=1, progress=0.1), Goal(id=2, progress=0.5), Goal(id=3, progress=0.63)]
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
@@ -32,10 +32,13 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
     return ""
 
 @router.put("/goals/{goal_id}", tags=["goals"])
-async def update_goal(goal_id: UUID, goal): 
+async def update_goal(goal_id: int, goal_obj: Goal): 
     # Here we want to update goal in the database and return only status
-    goal.id=goal_id
-    return
+    for goal in goals:
+        if (goal.id == goal_id):
+            goal.id = goal_obj.id
+            goal.progress = goal_obj.progress
+    return {'Updated goal: ', goal}
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: UUID): 
