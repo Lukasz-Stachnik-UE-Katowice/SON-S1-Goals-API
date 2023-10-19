@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
 class Goal(BaseModel):
-    id: str
-    progress: float
+    def __init__(self, id, progress, archived=False):
+        self.id = str
+        self.progress = float
+        self.archived = bool

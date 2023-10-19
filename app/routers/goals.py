@@ -9,6 +9,7 @@ goalTestList = [
     Goal(id= '2', progress= 0.75)
 ]
 
+
 @router.get("/goals", tags=["goals"])
 async def get_goals():
     # Here we want to return all goals in the database
