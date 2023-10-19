@@ -1,3 +1,4 @@
+from http.client import HTTPException
 from uuid import UUID
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -9,7 +10,7 @@ class Goal(BaseModel):
 
 router = APIRouter()
 
-goals = [Goal(id="1", progress=0.1), Goal(id=2, progress=0.5), Goal(id=3, progress=0.63)]
+goals = [Goal(id="1", progress=0.1)]
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
@@ -32,16 +33,14 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
     return ""
 
 @router.put("/goals/{goal_id}", tags=["goals"])
-async def update_goal(goal_id: int, goal_obj: Goal): 
+async def update_goal(goal_id: str, goal_obj: Goal): 
     # Here we want to update goal in the database and return only status
     for goal in goals:
-        try:
+        if goal.id == goal_id:
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
-        except DoesNotExist:
-            raise HTTPException(status_code=404, detail=" Goal not found ")
-        else:
             return goal
+    return "404"
 
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
