@@ -38,7 +38,8 @@ async def update_goal(goal_id: int, goal_obj: Goal):
         if (goal.id == goal_id):
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
-    return {'Updated goal: ', goal}
+            return goal
+    return {'message': "Goal doesn't exist"}
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: UUID): 
