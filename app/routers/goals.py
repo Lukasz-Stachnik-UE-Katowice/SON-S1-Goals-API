@@ -1,7 +1,14 @@
+from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter
+from .models.goal import Goal
 
 router = APIRouter()
+
+goalTestList = [
+    Goal(id= '1', datetime= datetime.now()),
+    Goal(id= '2', datetime= datetime.now())
+]
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
