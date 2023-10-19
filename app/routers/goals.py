@@ -6,8 +6,8 @@ from .models.goal import Goal
 router = APIRouter()
 
 goalTestList = [
-    Goal(id= '1', datetime= datetime.now()),
-    Goal(id= '2', datetime= datetime.now())
+    Goal(id= '1', progress= 0.60),
+    Goal(id= '2', progress= 0.75)
 ]
 
 @router.get("/goals", tags=["goals"])
