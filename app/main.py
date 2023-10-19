@@ -1,28 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from datetime import datetime
-from typing import List
-from pydantic import BaseModel
 from .routers import goals
 
 app = FastAPI()
 
 app.include_router(goals.router)
-
-
-class Goal(BaseModel):
-    id: int
-    due_date: datetime  # You can use a date format
-    frequency: str  # You can use an enum for 'daily', 'weekly', 'monthly'
-    progress: float
-    reminders: List[dict] | None = None  # List of reminders with 'date_time' and 'message'
-    notes: List[dict] | None = None  # List of notes with 'date_time' and 'text'
-    privacy: str | None = None  # You can use an enum for 'private', 'shared', 'public'
-    shared_with: List[str] | None = None  # List of user_ids
-    tags: List[str] | None = None
-    linked_resources: List[dict] | None = None  # List of linked resources with 'title' and 'url'
-    comments: List[dict] | None = None # List of comments with 'user_id', 'date_time', and 'text'
-    badges: List[str] | None = None
-
 
 @app.get("/")
 async def root():
