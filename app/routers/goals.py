@@ -35,11 +35,14 @@ async def post_goal(goal): #Here we need to add goal model that is going to be c
 async def update_goal(goal_id: int, goal_obj: Goal): 
     # Here we want to update goal in the database and return only status
     for goal in goals:
-        if goal.id == goal_id:
+        try:
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
+        except DoesNotExist:
+            raise HTTPException(status_code=404, detail="Goal not found")
+        else:
             return goal
-    return {'message': "Goal doesn't exist"}
+
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: UUID): 
