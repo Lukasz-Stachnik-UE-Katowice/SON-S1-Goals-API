@@ -46,3 +46,8 @@ async def delete_goal(goal_id: str):
 async def post_progress_goal(progress: float): 
     # Here we want to update the progress with given on or by given value
     return 
+
+@router.post("/goals/{goal_id}/archive", tags=["goals"])
+async def archive_goal(goal_id: str): 
+    # Here we want to archive the goal 
+    return 
