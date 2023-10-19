@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
 ### Python ###
+.idea/
+.idea/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -177,3 +179,4 @@ pyrightconfig.json
 .idea
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+.idea/workspace.xml
