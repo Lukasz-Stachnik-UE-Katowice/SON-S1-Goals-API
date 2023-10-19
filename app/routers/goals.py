@@ -1,10 +1,9 @@
-from uuid import UUID, uuid4
-import uuid
-from fastapi import APIRouter
-
+from uuid import UUID
+from fastapi import APIRouter, HTTPException
+from app.routers.sample_data.SampleGoal import sample_goals
 from app.routers.models.Comment import Comment
 from app.routers.models.Goal import Goal
-from app.routers.models.LinkedResources import LinkedResource
+from app.routers.models.LinkedResource import LinkedResource
 from app.routers.models.Note import Note
 from app.routers.models.Reminder import Reminder
 
@@ -13,19 +12,15 @@ router = APIRouter()
 
 @router.get("/goals", tags=["goals"])
 async def get_goals() -> list[Goal]:
-    sample_goal = Goal(
-        id= str(uuid4()),
-        due_date='2023-12-31',
-        frequency='weekly'
-    )
-
-    return [sample_goal]
+    return sample_goals
 
 
 @router.get("/goals/{goal_id}", tags=["goals"])
-async def get_goal(goals_id: UUID):
-    # Here we want to return goal that user whant's to see the details of
-    return []
+async def get_goal(goals_id: UUID) -> Goal:
+    for x in sample_goals:
+        if x.id == goals_id:
+            return x
+    raise HTTPException(status_code=404, detail="Item not found")
 
 
 @router.get("/goals/{username}", tags=["goals"])

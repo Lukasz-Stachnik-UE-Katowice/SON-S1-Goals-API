@@ -1,7 +1,9 @@
+from uuid import UUID
+
 from pydantic import BaseModel
 
 
 class Comment(BaseModel):
-    user_id: str
+    user_id: UUID
     date_time: str
     text: str
