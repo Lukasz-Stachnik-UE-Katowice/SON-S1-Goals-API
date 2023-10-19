@@ -1,4 +1,4 @@
-from http.client import HTTPException
+from fastapi import HTTPException
 from uuid import UUID
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -40,7 +40,7 @@ async def update_goal(goal_id: str, goal_obj: Goal):
             goal.id = goal_obj.id
             goal.progress = goal_obj.progress
             return goal
-    return "404"
+    raise HTTPException(404, "Goal doesn't exist")
 
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
