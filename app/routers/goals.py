@@ -21,17 +21,12 @@ async def get_goal(goals_id: UUID):
 @router.get("/goals/{username}", tags=["goals"])
 async def get_user_goals(username: str): 
     # Here we want to return all goals in the database for given user
-<<<<<<< HEAD
-=======
-    # if Dict.has_key(username)==1:
-        # Dict[username] --zapisać do listy
->>>>>>> b2743db6beb163c93ba71772182088494a6c2e8d
     return data.get(username, [])
 
 @router.post("/goals", tags=["goals"])
 async def post_goal(goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
     # Here we want to add new goal to the database and return it back with status
-    return ""
+    return data
 
 @router.put("/goals/{goal_id}", tags=["goals"])
 async def update_goal(goal_id: UUID, goal): 
