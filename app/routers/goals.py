@@ -1,11 +1,12 @@
 from uuid import UUID
 from fastapi import APIRouter
 
-i1="Ola"
-i2="Adam"
-Dict={i1:["schudnąć","jeść zdrowo"],i2:["sprzątać codziennie","uczyć się angielskiego"]}
-
 router = APIRouter()
+data = {
+    "user1" : ["lose weight", "learn math"],
+    "user2" :["gain some weight"],
+    "user3": ["run marathon", "keep clean diet"],
+}
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
@@ -20,8 +21,7 @@ async def get_goal(goals_id: UUID):
 @router.get("/goals/{username}", tags=["goals"])
 async def get_user_goals(username: str): 
     # Here we want to return all goals in the database for given user
-
-    return [{"goal": "Learn Python"}]
+    return data.get(username, [])
 
 @router.post("/goals", tags=["goals"])
 async def post_goal(goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
