@@ -1,5 +1,12 @@
 from pydantic import BaseModel
+from .helpers import Frequency
+
 
 class Goal(BaseModel):
-    id: str
+    id: int
+    title: str  # added
+    due_date: str
+    frequency: Frequency
     progress: float
+
+
