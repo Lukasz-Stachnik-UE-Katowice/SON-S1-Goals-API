@@ -69,6 +69,7 @@ async def update_goal(goal_id: int, goal_obj: Goal):
             return goal
     raise HTTPException(404, "Goal doesn't exist")
 
+
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: str):
     for goal in goals:
@@ -88,5 +89,10 @@ async def post_progress_goal(goal_id: int, progress: float):
 
 @router.post("/goals/{goal_id}/archive", tags=["goals"])
 async def archive_goal(goal_id: str):
-    # Here we want to archive the goal
-    return
+    for goal in goals:
+        if goal.id == goal_id:
+            if goal.archived:
+                return {"message": "Targeted goal is already archived"}
+            goal.archived=True
+            return {"message": "Targeted goal archived"}
+    return HTTPException(status_code=404, detail="Targeted goal does not exist")

@@ -8,5 +8,4 @@ class Goal(BaseModel):
     due_date: str
     frequency: Frequency
     progress: float
-
-
+    archived: bool = False  # archived default: False
