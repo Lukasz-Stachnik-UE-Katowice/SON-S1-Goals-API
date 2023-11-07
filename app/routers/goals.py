@@ -5,8 +5,8 @@ from .models.goal import Goal
 router = APIRouter()
 
 goalTestList = [
-    Goal(id= '1', progress= 0.60),
-    Goal(id= '2', progress= 0.75)
+    Goal(id='1', progress=0.60),
+    Goal(id='2', progress=0.75)
 ]
 
 
@@ -52,7 +52,9 @@ async def post_progress_goal(progress: float):
 async def archive_goal(goal_id: str):
     for goal in goalTestList:
         if goal.id == goal_id:
-            goalTestList.remove(goal)
-            return {"message": "Targeted goal destroyed"}
+            if goal.archived:
+                return {"message": "Targeted goal is already archived"}
+            goal.archived=True
+            return {"message": "Targeted goal archived"}
     return HTTPException(status_code=404, detail="Targeted goal does not exist")
     return 

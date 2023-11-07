@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
 class Goal(BaseModel):
-    def __init__(self, id, progress, archived=False):
-        self.id = str
-        self.progress = float
-        self.archived = bool
+    id: str
+    progress: float
+    archived: bool = False  # archived jest teraz domyślnie ustawiane na False
