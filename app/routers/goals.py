@@ -1,12 +1,12 @@
 from uuid import UUID
 from fastapi import APIRouter
 
-router = APIRouter()
 data = {
     "user1" : ["lose weight", "learn math"],
-    "user2" :["gain some weight"],
-    "user3": ["run marathon", "keep clean diet"],
+    "user2" : ["gain some weight"],
+    "user3" : ["run marathon", "keep clean diet"],
 }
+router = APIRouter()
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
@@ -21,6 +21,11 @@ async def get_goal(goals_id: UUID):
 @router.get("/goals/{username}", tags=["goals"])
 async def get_user_goals(username: str): 
     # Here we want to return all goals in the database for given user
+<<<<<<< HEAD
+=======
+    # if Dict.has_key(username)==1:
+        # Dict[username] --zapisać do listy
+>>>>>>> b2743db6beb163c93ba71772182088494a6c2e8d
     return data.get(username, [])
 
 @router.post("/goals", tags=["goals"])
