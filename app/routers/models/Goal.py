@@ -1,6 +1,11 @@
 from uuid import UUID
+from app.routers.models import Comment
 from pydantic import BaseModel
 
+from app.routers.models.Comment import Comment
+from app.routers.models.LinkedResource import LinkedResource
+from app.routers.models.Note import Note
+from app.routers.models.Reminder import Reminder
 
 
 class Goal(BaseModel):

@@ -1,33 +1,36 @@
 from uuid import UUID
 from fastapi import APIRouter, HTTPException
-from .models.goal import Goal
+from app.routers.sample_data.SampleGoal import sample_goals
+from app.routers.models.Goal import Goal
 
 router = APIRouter()
 
-goalTestList = [
-    Goal(id= '1', progress= 0.60),
-    Goal(id= '2', progress= 0.75)
-]
 
 @router.get("/goals", tags=["goals"])
-async def get_goals():
-    # Here we want to return all goals in the database
-    return []
+async def get_goals() -> list[Goal]:
+    return sample_goals
+
 
 @router.get("/goals/{goal_id}", tags=["goals"])
-async def get_goal(goals_id: UUID):
-    # Here we want to return goal that user whant's to see the details of
-    return []
+async def get_goal(goals_id: UUID) -> Goal:
+    for x in sample_goals:
+        if x.id == goals_id:
+            return x
+    raise HTTPException(status_code=404, detail="Item not found")
+
 
 @router.get("/goals/{username}", tags=["goals"])
 async def get_user_goals(username: str):
     # Here we want to return all goals in the database for given user
     return [{"goal": "Learn Python"}]
 
+
 @router.post("/goals", tags=["goals"])
-async def post_goal(goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
+async def post_goal(
+        goal):  # Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
     # Here we want to add new goal to the database and return it back with status
     return ""
+
 
 @router.put("/goals/{goal_id}", tags=["goals"])
 async def update_goal(goal_id: str, goal_obj: Goal):
@@ -38,6 +41,7 @@ async def update_goal(goal_id: str, goal_obj: Goal):
             goal.progress = goal_obj.progress
             return goal
     raise HTTPException(404, "Goal doesn't exist")
+
 
 @router.delete("/goals/{goal_id}", tags=["goals"])
 async def delete_goal(goal_id: str):

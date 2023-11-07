@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import goals
+from app.routers import goals
 
 app = FastAPI()
 
