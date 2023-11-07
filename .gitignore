@@ -175,5 +175,8 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
+# IntelliJ
+.idea
+
 # End of https://www.toptal.com/developers/gitignore/api/python
 .idea/workspace.xml
