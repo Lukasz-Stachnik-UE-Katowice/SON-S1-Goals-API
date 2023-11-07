@@ -1,5 +1,11 @@
 from uuid import UUID
 from fastapi import APIRouter
+from .models.goal import Goal
+
+goalTestList = [
+    Goal(id= '1', progress= 0.60),
+    Goal(id= '2', progress= 0.75)
+]
 
 data = {
     "user1" : ["lose weight", "learn math"],
@@ -37,17 +43,6 @@ async def update_goal(goal_id: UUID, goal):
 async def delete_goal(goal_id: UUID): 
     # Here we want to delete goal from the database, and return status
     return 
-=======
-from uuid import UUID
-from fastapi import APIRouter, HTTPException
-from .models.goal import Goal
-
-router = APIRouter()
-
-goalTestList = [
-    Goal(id= '1', progress= 0.60),
-    Goal(id= '2', progress= 0.75)
-]
 
 @router.get("/goals", tags=["goals"])
 async def get_goals():
