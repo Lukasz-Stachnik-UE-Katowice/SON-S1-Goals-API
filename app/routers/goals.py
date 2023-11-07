@@ -5,6 +5,12 @@ i1="Ola"
 i2="Adam"
 Dict={i1:["schudnąć","jeść zdrowo"],i2:["sprzątać codziennie","uczyć się angielskiego"]}
 
+data = {
+    "user1" : ["lose weight", "learn math"],
+    "user2" : ["gain some weight"],
+    "user3" : ["run marathon", "keep clean diet"],
+}
+
 router = APIRouter()
 
 @router.get("/goals", tags=["goals"])
@@ -22,7 +28,7 @@ async def get_user_goals(username: str):
     # Here we want to return all goals in the database for given user
     # if Dict.has_key(username)==1:
         # Dict[username] --zapisać do listy
-    return [{"goal": "Learn Python"}]
+    return data.get(username, [])
 
 @router.post("/goals", tags=["goals"])
 async def post_goal(goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
