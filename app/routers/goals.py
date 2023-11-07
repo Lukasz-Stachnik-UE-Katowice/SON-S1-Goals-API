@@ -1,11 +1,7 @@
 from uuid import UUID
 from fastapi import APIRouter, HTTPException
 from app.routers.sample_data.SampleGoal import sample_goals
-from app.routers.models.Comment import Comment
 from app.routers.models.Goal import Goal
-from app.routers.models.LinkedResource import LinkedResource
-from app.routers.models.Note import Note
-from app.routers.models.Reminder import Reminder
 
 router = APIRouter()
 
