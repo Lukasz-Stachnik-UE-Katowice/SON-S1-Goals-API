@@ -25,7 +25,7 @@ users: list[User] = [
     User(id=UUID("68b65546-6784-40d8-a111-84126b2cb188"), name="Bob"),
 ]
 
-data: dict[User, list[Goal]] = {
+data: dict[str, list[Goal]] = {
     user.name: [goal]
     for user, goal in zip(users, goals)
 }
@@ -50,17 +50,17 @@ async def get_goals():
     content = jsonable_encoder(list(data.values()))
     return JSONResponse(content=content)
 
-@router.get("/goals/{username}", tags=["goals"])
+@router.get("/users/{username}/goals", tags=["goals"])
 async def get_user_goals(username: str):
     # Here we want to return all goals in the database for given user
     try:
-        content = jsonable_encoder([v for k, v in data if k == username][0])
+        content = jsonable_encoder(data[username]) 
         return JSONResponse(content=content)
-    except IndexError:
+    except KeyError:
         raise HTTPException(404, "User with this name could not be found.")
 
 @router.put("/goals/{goal_id}", tags=["goals"])
-async def update_goal(goal_id: str, goal_obj: Goal):
+async def update_goal(goal_id: int, goal_obj: Goal):
     # Here we want to update goal in the database and return only status
     for goal in goals:
         if goal.id == goal_id:
@@ -78,7 +78,7 @@ async def delete_goal(goal_id: str):
     return HTTPException(status_code=404, detail="Targeted goal does not exist")
 
 @router.post("/goals/{goal_id}/progress", tags=["goals"])
-async def post_progress_goal(goal_id: str, progress: float):
+async def post_progress_goal(goal_id: int, progress: float):
     # Here we want to update the progress with given value
     for goal in goals:
         if goal.id == goal_id:
