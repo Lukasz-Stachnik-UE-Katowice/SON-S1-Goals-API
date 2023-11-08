@@ -40,7 +40,7 @@ async def get_goal(goals_id: int):
     return []
 
 @router.post("/goals", tags=["goals"])
-async def post_goal(goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
+async def post_goal(goal_obj: Goal): #Here we need to add goal model that is going to be created https://fastapi.tiangolo.com/tutorial/body/
     # Here we want to add new goal to the database and return it back with status
     return data
 
